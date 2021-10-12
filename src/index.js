@@ -1,7 +1,5 @@
 import './style.css';
+import {addComment, getComments} from './handleComments';
 
-const main = document.getElementsByTagName('main');
-const content = `
-<h2>Hello world!</h2>
-`;
-main[0].insertAdjacentHTML('beforeend', content);
+getComments('item1');
+addComment('item1','kenny','comment from webpage');
