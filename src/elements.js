@@ -2,9 +2,13 @@ import { getShowById } from './getShow.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
-  'tt0944947', // Game of Thrones
+  'tt1475582', // Sherlock
   'tt0185906', // Band of Brothers
   'tt7366338', // Chernobyl
+  'tt0773262', // Dexter
+  'tt10919420', // Squid Game
+  'tt0141842', // The Sopranos
+  'tt4574334', // Stranger Things
 ];
 
 const createCard = (obj, counter) => {
@@ -51,7 +55,7 @@ window.populateModal = (counter) => {
   const mainModal = document.getElementById('mainModal');
   showResults[counter].then((show) => {
     mainModal.innerHTML = `
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="mainModalLabel">${show.name}</h5>
