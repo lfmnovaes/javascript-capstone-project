@@ -1,5 +1,6 @@
 import './style.css';
 import { loadShows } from './elements.js';
+import { getComments } from './handleComments.js';
 
 const main = document.getElementsByTagName('main');
 const content = `
@@ -29,3 +30,5 @@ const modal = `
 `;
 
 main[0].insertAdjacentHTML('beforeend', modal);
+
+getComments('item1');
