@@ -6,9 +6,14 @@ const get = '/comments?item_id=';
 const post = '/comments/';
 
 async function getComments(itemID) {
-  const response = await fetch(api + get + itemID);
-  const comments = await response.json();
-  printComments(comments);
+  try{
+    const response = await fetch(api + get + itemID);
+    const comments = await response.json();
+    printComments(comments);
+  } catch{
+    console.log("there is an error");
+  }
+  
 }
 
 const addComment = (itemID, user, text) => {
