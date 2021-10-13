@@ -22,9 +22,7 @@ const addComment = (itemID, user, text) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
-  }).then((response) => response.text()).then((text) => {
-    // console.log(text);
-  });
+  }).then((response) => response.text()).then((text) => text);
 };
 
 export { getComments, addComment };
