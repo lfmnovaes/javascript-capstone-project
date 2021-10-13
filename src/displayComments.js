@@ -1,10 +1,10 @@
 const removeComments = () => {
-    const commentList = document.getElementById('commentList');
-    
-    while (commentList.firstChild) {
-        commentList.removeChild(commentList.firstChild);
-    }
-}
+  const commentList = document.getElementById('commentList');
+
+  while (commentList.firstChild) {
+    commentList.removeChild(commentList.firstChild);
+  }
+};
 
 const printComments = (comments) => {
   const commentContainer = document.getElementById('comments');
