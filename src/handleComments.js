@@ -1,4 +1,4 @@
-import printComments from './displayComments.js';
+import { printComments, listNewComment } from './displayComments.js';
 
 const id = 'qafeh2BKDxqFOjaoaHYS';
 const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${id}`;
@@ -22,7 +22,9 @@ const addComment = (itemID, user, text) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
-  }).then((response) => response.text()).then(() => getComments(itemID));
+  }).then((response) => response.text()).then(() => {
+    listNewComment(user, text);
+  });
 };
 
 export { getComments, addComment };

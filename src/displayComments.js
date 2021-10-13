@@ -6,6 +6,18 @@ const removeComments = () => {
   }
 };
 
+const commentMaker = (list, username, comment, date) => {
+  const commentItem = document.createElement('li');
+  const user = document.createElement('strong');
+
+  commentItem.setAttribute('class', 'list-group-item');
+  commentItem.appendChild(document.createTextNode(date));
+  user.appendChild(document.createTextNode(` ${username} says: `));
+  commentItem.append(user);
+  commentItem.appendChild(document.createTextNode(comment));
+  list.append(commentItem);
+};
+
 const printComments = (comments) => {
   const commentContainer = document.getElementById('comments');
   const commentList = document.getElementById('commentList');
@@ -13,18 +25,18 @@ const printComments = (comments) => {
   removeComments();
 
   comments.forEach((comment) => {
-    const commentItem = document.createElement('li');
-    const user = document.createElement('strong');
-
-    commentItem.setAttribute('class', 'list-group-item');
-    commentItem.appendChild(document.createTextNode(comment.creation_date));
-    user.appendChild(document.createTextNode(` ${comment.username} says: `));
-    commentItem.append(user);
-    commentItem.appendChild(document.createTextNode(comment.comment));
-    commentList.append(commentItem);
+    commentMaker(commentList, comment.username, comment.comment, comment.creation_date);
   });
 
   commentContainer.append(commentList);
 };
 
-export default printComments;
+const listNewComment = (name, Newcomment) => {
+  const today = new Date();
+  const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+  const commentList = document.getElementById('commentList');
+  commentMaker(commentList, name, Newcomment, date);
+};
+
+export { printComments, listNewComment };
