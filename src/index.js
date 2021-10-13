@@ -1,7 +1,7 @@
 import './style.css';
 import { loadShows } from './elements.js';
-//import { getComments } from './handleComments.js';
-//import addCommentListener from './eventListener.js';
+// import { getComments } from './handleComments.js';
+// import addCommentListener from './eventListener.js';
 
 const main = document.getElementsByTagName('main');
 const content = `
