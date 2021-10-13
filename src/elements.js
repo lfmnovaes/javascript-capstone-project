@@ -1,4 +1,5 @@
 import { getShowById } from './getShow.js';
+import { getComments, addComment } from './handleComments.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
@@ -18,7 +19,7 @@ const createCard = (obj, counter) => {
       <img src="${obj.image.medium}" class="card-img-top img-fluid" alt="Poster of ${obj.name}">
       <div class="card-body">
         <h5 class="card-title">${obj.name}</h5>
-        <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
           Comments
         </button>
       </div>
@@ -55,7 +56,7 @@ window.populateModal = (counter) => {
   const mainModal = document.getElementById('mainModal');
   showResults[counter].then((show) => {
     mainModal.innerHTML = `
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="mainModalLabel">${show.name}</h5>
@@ -65,12 +66,32 @@ window.populateModal = (counter) => {
           <img src="${show.image.medium}" class="mx-auto d-block">
           ${show.summary}
         </div>
+        <div id="comments">
+          <h2>Comments</h2>
+          <ul id="commentList" class="list-group-flush ps-0">
+          </ul>
+        </div>
+        <div id="newComment" class="d-flex flex-column">   
+          <h2>Add a comment</h2> 
+          <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
+          <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
+          <button id="btnComment" class="my-2 btn btn-secondary">Comment</button>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
     `;
+  });
+  getComments(`item${counter}`);
+  const username = document.getElementById('username');
+  const comment = document.getElementById('comment');
+  const button = document.getElementById('btnComment');
+  button.addEventListener('click', () => {
+    addComment(`item${counter}`, username.value, comment.value);
+    username.value = '';
+    comment.value = '';
   });
 };
 

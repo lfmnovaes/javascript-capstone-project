@@ -1,7 +1,6 @@
 import './style.css';
 import { loadShows } from './elements.js';
-import { getComments } from './handleComments.js';
-// import addCommentListener from './eventListener.js';
+import addCommentListener from './eventListener.js';
 
 const main = document.getElementsByTagName('main');
 const content = `
@@ -22,6 +21,17 @@ const modal = `
       <div class="modal-body">
         ...
       </div>
+      <div id="comments">
+        <h2>Comments</h2>
+        <ul id="commentList" class="list-group-flush ps-0">      
+        </ul>
+      </div>
+      <div id="newComment" class="d-flex flex-column">   
+        <h2>Add a comment</h2> 
+        <input type="text" class="my-2 form-control" id="username" placeholder="Your name">
+        <textarea class="my-2 form-control" id="comment" placeholder="Your insights" rows="3"></textarea>
+        <button class="my-2 btn btn-secondary" id="btnComment">Comment</button>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
@@ -31,4 +41,5 @@ const modal = `
 `;
 
 main[0].insertAdjacentHTML('beforeend', modal);
-getComments('item10');
+// getComments('item1');
+// addCommentListener('item1');

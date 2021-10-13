@@ -10,6 +10,8 @@ const addCommentListener = (item) => {
     username.value = '';
     comment.value = '';
   });
+  // item${id}
+  // id="btnComment${id}"
 };
 
 export default addCommentListener;
