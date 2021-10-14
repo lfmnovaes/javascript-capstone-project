@@ -1,12 +1,11 @@
 import './style.css';
 import { loadShows } from './elements.js';
-import { loadComments } from './displayComments.js';
+import { loadAllComments } from './displayComments.js';
 
 const main = document.getElementsByTagName('main');
 
 loadShows(main[0]);
-loadComments();
-//consoleLogComments(1);
+loadAllComments();
 
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
@@ -39,5 +38,3 @@ const modal = `
 `;
 
 main[0].insertAdjacentHTML('beforeend', modal);
-// getComments('item1');
-// addCommentListener('item1');

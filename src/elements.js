@@ -1,5 +1,5 @@
 import { getShowById } from './getShow.js';
-import { consoleLogComments } from './displayComments.js';
+import { loadComments } from './displayComments.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
@@ -75,7 +75,7 @@ window.populateModal = (id) => {
           <h2>Add a comment</h2> 
           <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
           <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
-          <button id="btnComment" class="my-2 btn btn-secondary">Comment</button>
+          <button id="btnComment" class="my-2 btn btn-secondary" onclick="addNewComment(${id})">Comment</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,16 +84,7 @@ window.populateModal = (id) => {
     </div>
     `;
   });
-  consoleLogComments(id);
-  // getComments(`item${id}`);
-  // const username = document.getElementById('username');
-  // const comment = document.getElementById('comment');
-  // const button = document.getElementById('btnComment');
-  // button.addEventListener('click', () => {
-  //   addComment(`item${id}`, username.value, comment.value);
-  //   username.value = '';
-  //   comment.value = '';
-  // });
+  loadComments(id);
 };
 
 export default loadShows;
