@@ -1,14 +1,12 @@
 import './style.css';
 import { loadShows } from './elements.js';
-import addCommentListener from './eventListener.js';
+import { loadComments } from './displayComments.js';
 
 const main = document.getElementsByTagName('main');
-const content = `
-<h2>Hello world!</h2>
-`;
-main[0].insertAdjacentHTML('beforeend', content);
 
 loadShows(main[0]);
+loadComments();
+//consoleLogComments(1);
 
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">

@@ -1,18 +1,15 @@
 import { printComments, listNewComment } from './displayComments.js';
 
-const id = 'qafeh2BKDxqFOjaoaHYS';
+const id = 'X5qPSIb9YIcPVQTRSYUg';
 const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${id}`;
 const get = '/comments?item_id=';
 const post = '/comments/';
 
 async function getComments(itemID) {
-  try {
-    const response = await fetch(api + get + itemID);
-    const comments = await response.json();
-    printComments(comments);
-  } catch {
-    console.log('there is an error');
-  }
+  const response = await fetch(api + get + itemID);
+  //const comments = await response.json();
+  return response.json();
+  //printComments(comments);
 }
 
 const addComment = (itemID, user, text) => {

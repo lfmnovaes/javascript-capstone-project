@@ -1,5 +1,5 @@
 import { getShowById } from './getShow.js';
-import { getComments, addComment } from './handleComments.js';
+import { consoleLogComments } from './displayComments.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
@@ -52,9 +52,9 @@ export const loadShows = async (main) => {
   return createAlbum(await Promise.all(showResults), main);
 };
 
-window.populateModal = (counter) => {
+window.populateModal = (id) => {
   const mainModal = document.getElementById('mainModal');
-  showResults[counter].then((show) => {
+  showResults[id].then((show) => {
     mainModal.innerHTML = `
     <div class="modal-dialog">
       <div class="modal-content">
@@ -84,15 +84,16 @@ window.populateModal = (counter) => {
     </div>
     `;
   });
-  getComments(`item${counter}`);
-  const username = document.getElementById('username');
-  const comment = document.getElementById('comment');
-  const button = document.getElementById('btnComment');
-  button.addEventListener('click', () => {
-    addComment(`item${counter}`, username.value, comment.value);
-    username.value = '';
-    comment.value = '';
-  });
+  consoleLogComments(id);
+  // getComments(`item${id}`);
+  // const username = document.getElementById('username');
+  // const comment = document.getElementById('comment');
+  // const button = document.getElementById('btnComment');
+  // button.addEventListener('click', () => {
+  //   addComment(`item${id}`, username.value, comment.value);
+  //   username.value = '';
+  //   comment.value = '';
+  // });
 };
 
 export default loadShows;

@@ -1,3 +1,24 @@
+import { getComments } from './handleComments';
+
+let comments = [];
+
+const loadComments = async () => {
+  for (let i = 0; i < 8 ; i += 1) {
+    comments.push(getComments(`${i}`));
+  }
+  return await Promise.all(comments);
+};
+
+//loadComments();
+
+const consoleLogComments = (n) => {
+  comments[n].then((result) => {
+    result.forEach((e) => {
+      console.log(e);
+    });
+  });
+};
+
 const removeComments = () => {
   const commentList = document.getElementById('commentList');
 
@@ -39,4 +60,4 @@ const listNewComment = (name, Newcomment) => {
   commentMaker(commentList, name, Newcomment, date);
 };
 
-export { printComments, listNewComment };
+export { printComments, listNewComment, loadComments, consoleLogComments };
