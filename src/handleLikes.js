@@ -1,10 +1,16 @@
 const id = 'qafeh2BKDxqFOjaoaHYS';
 const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${id}/likes/`;
 
-async function setLikes() {
+async function setLikes(total) {
   return fetch(api)
     .then((response) => response.json())
-    .then((likes) => likes);
+    .then((likes) => likes).catch(() => {
+      const emptyArr = [];
+      for (let i = 0; i < total; i += 1) {
+        emptyArr.push(0);
+      }
+      return emptyArr;
+    });
 }
 
 const newLike = (itemID) => {
@@ -23,7 +29,6 @@ async function like(total) {
   const likeList = await setLikes();
   const fullLikeList = [];
   let index = -1;
-
   for (let i = 0; i < total; i += 1) {
     index = likeList.findIndex((item) => item.item_id === `item${i}`);
     if (index !== -1) {
