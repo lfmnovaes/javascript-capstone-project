@@ -17,7 +17,13 @@ const createCard = (obj, counter) => {
     <div class="card">
       <img src="${obj.image.medium}" class="card-img-top img-fluid" alt="Poster of ${obj.name}">
       <div class="card-body">
-        <h5 class="card-title">${obj.name}</h5>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <h5 class="card-title">${obj.name}</h5>
+          <div>          
+            <i class="fa-regular fa-heart" id="like-${counter}"></i>          
+            5 likes
+          </div>
+        </div>
         <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
           Comments
         </button>
