@@ -1,26 +1,25 @@
-import { getComments, addComment } from './handleComments';
+import { getComments, addComment } from './handleComments.js';
 
-let comments = [];
-let commentsResult = [];
+const comments = [];
 
 const loadAllComments = async () => {
-  for (let i = 0; i < 8 ; i += 1) {
+  for (let i = 0; i < 8; i += 1) {
     comments.push(getComments(`${i}`));
   }
-  return await Promise.all(comments);
+  return Promise.all(comments);
 };
 
-const createLi2 = (commentList, username, comment, date) => {
-  const commentItem = document.createElement('li');
-  const user = document.createElement('strong');
+// const createLi2 = (commentList, username, comment, date) => {
+//   const commentItem = document.createElement('li');
+//   const user = document.createElement('strong');
 
-  commentItem.setAttribute('class', 'list-group-item');
-  commentItem.appendChild(document.createTextNode(date));
-  user.appendChild(document.createTextNode(` ${username} says: `));
-  commentItem.append(user);
-  commentItem.appendChild(document.createTextNode(comment));
-  commentList.append(commentItem);
-};
+//   commentItem.setAttribute('class', 'list-group-item');
+//   commentItem.appendChild(document.createTextNode(date));
+//   user.appendChild(document.createTextNode(` ${username} says: `));
+//   commentItem.append(user);
+//   commentItem.appendChild(document.createTextNode(comment));
+//   commentList.append(commentItem);
+// };
 
 const createLi = (username, comment, date) => {
   const li = `
@@ -36,13 +35,13 @@ const createLi = (username, comment, date) => {
 // };
 
 const loadComments = (id) => {
-  const commentList = document.getElementById('commentList');
-  //removeComments(commentList);
-  //console.log(comments[id].length);
-  //console.log(commentsResult[id].length);
+  let commentList = document.getElementById('commentList');
+  // removeComments(commentList);
+  // console.log(comments[id].length);
+  // console.log(commentsResult[id].length);
   comments[id].then((result) => {
-    console.log(result);
     result.forEach((e) => {
+      console.log(e);
       commentList.innerHTML += createLi(e.username, e.comment, e.creation_date);
     });
     console.log(commentList);
@@ -59,11 +58,11 @@ window.addNewComment = (id) => {
   const commentField = document.getElementById('comment');
   const today = new Date();
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-  commentList += createLi(nameField.value, commentField.value, date);
+  commentList.innerHTML += createLi(nameField.value, commentField.value, date);
   addComment(id, nameField.value, commentField.value);
   nameField.value = '';
   commentField.value = '';
-  //loadAllComments().then(result => comments = result);
+  // loadAllComments().then(result => comments = result);
 };
 
 export { loadAllComments, loadComments };
