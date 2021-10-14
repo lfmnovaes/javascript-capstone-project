@@ -2,13 +2,43 @@ import './style.css';
 import { loadShows } from './elements.js';
 // import addCommentListener from './eventListener.js';
 
-const main = document.getElementsByTagName('main');
-const content = `
-<h2>Hello world!</h2>
-`;
-main[0].insertAdjacentHTML('beforeend', content);
+const main = document.getElementById('listedShow');
 
-loadShows(main[0]);
+// COMEDY
+const comedy = [
+  'tt0386676', // The Office
+  'tt0108778', // Friends
+  'tt0898266', // The Big Bang Theory
+  'tt0098904', // Seinfeld
+  'tt1442437', // Modern Family
+  'tt0096697', // The Simpsons
+];
+
+// DRAMA
+const drama = [
+  'tt0903747', // Breaking Bad
+  'tt1475582', // Sherlock
+  'tt0185906', // Band of Brothers
+  'tt7366338', // Chernobyl
+  'tt0773262', // Dexter
+  'tt10919420', // Squid Game
+  'tt0141842', // The Sopranos
+  'tt4574334', // Stranger Things
+];
+
+// DOCUMENTARY
+const documentary = [
+  'tt15260794', //Turning Point: 9/11
+  'tt5491994', // Planet Earth II
+  'tt0185906', // Band of Brothers
+  'tt7366338', // Chernobyl
+  'tt0773262', // Dexter
+  'tt10919420', // Squid Game
+  'tt0141842', // The Sopranos
+  'tt4574334', // Stranger Things
+];
+
+loadShows(drama, main);
 
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
@@ -29,4 +59,26 @@ const modal = `
 </div>
 `;
 
-main[0].insertAdjacentHTML('beforeend', modal);
+main.insertAdjacentHTML('beforeend', modal);
+
+const destroyContent = () => {
+  const content = document.getElementById('listedShow');
+
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
+  }  
+}
+
+const listenerNav = (shows, navbar) => {
+  console.log(shows);
+  navbar.addEventListener('click', () => {
+    main.innerHTML = '';
+    loadShows(shows, main);       
+    main.insertAdjacentHTML('beforeend', modal); 
+  })
+};
+
+const nav = document.getElementById('nav').querySelectorAll('li');
+listenerNav(drama, nav[0]);
+listenerNav(comedy, nav[1]);
+listenerNav(documentary, nav[2]);
