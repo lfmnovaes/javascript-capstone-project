@@ -3,6 +3,9 @@ body {
 }
 
 i {
-  cursor: pointer;
   color: red;
+}
+
+.pointer {
+  cursor: pointer;
 }

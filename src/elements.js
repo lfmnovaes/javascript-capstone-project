@@ -1,4 +1,5 @@
 import { getShowById } from './getShow.js';
+import { listenLikes, like } from './handleLikes.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
@@ -11,7 +12,7 @@ const showIDs = [
   'tt4574334', // Stranger Things
 ];
 
-const createCard = (obj, counter) => {
+const createCard = (obj, counter, like) => {
   const data = `
   <div class="col">
     <div class="card">
@@ -19,9 +20,9 @@ const createCard = (obj, counter) => {
       <div class="card-body">
         <div class="d-flex flex-row justify-content-between align-items-center">
           <h5 class="card-title">${obj.name}</h5>
-          <div>          
-            <i class="fa-regular fa-heart" id="like-${counter}"></i>          
-            5 likes
+          <div id="btnLike-${counter}" class="pointer">          
+            <i  class="fa-regular fa-heart" "></i>          
+            <span id="like-${counter}">${like} likes</span>
           </div>
         </div>
         <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
@@ -31,23 +32,26 @@ const createCard = (obj, counter) => {
     </div>
   </div>
   `;
+
   return data;
 };
 
 const showResults = [];
 
-const createAlbum = (arr, main) => {
+const createAlbum = async (arr, main) => {
   const container = document.createElement('div');
   container.className = 'container';
   const div = document.createElement('div');
   div.className = 'row row-cols-1 row-cols-md-4 g-4';
   container.appendChild(div);
+  const likeList = await like(showIDs.length);
   let counter = 0;
   arr.forEach((e) => {
-    div.innerHTML += createCard(e, counter);
+    div.innerHTML += createCard(e, counter, likeList[counter]);
     counter += 1;
   });
   main.append(container);
+  listenLikes(likeList);
 };
 
 export const loadShows = async (main) => {

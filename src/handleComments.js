@@ -11,7 +11,7 @@ async function getComments(itemID) {
     const comments = await response.json();
     printComments(comments);
   } catch {
-    console.log('there is an error');
+    // console.log('there is an error');
   }
 }
 
