@@ -16,6 +16,11 @@ const createLi = (username, comment, date) => {
   return li;
 };
 
+const setNumberComments = (id) => {
+  const commentHeader = document.getElementById('commentHeader');
+  commentHeader.innerText = `Comments (${comments[id].length})`;
+};
+
 export const loadComments = (id) => {
   const commentList = document.getElementById('commentList');
   if (Promise.resolve(comments[id]) === comments[id]) {
@@ -30,11 +35,6 @@ export const loadComments = (id) => {
     });
   }
   setNumberComments(id);
-};
-
-const setNumberComments = (id) => {
-  const commentHeader = document.getElementById('commentHeader');
-  commentHeader.innerText = `Comments (${comments[id].length})`;
 };
 
 window.addNewComment = (id) => {

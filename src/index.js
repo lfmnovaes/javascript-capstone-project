@@ -83,7 +83,6 @@ const navClick = (genre) => {
       nav[1].innerHTML = 'Comedy';
       nav[2].className = 'nav-link';
       nav[2].innerHTML = 'Documentary';
-      console.log('drama');
       break;
     case 'Comedy':
       nav[0].className = 'nav-link';
@@ -92,7 +91,6 @@ const navClick = (genre) => {
       nav[1].innerHTML = `Comedy (${comedyShows.length})`;
       nav[2].className = 'nav-link';
       nav[2].innerHTML = 'Documentary';
-      console.log('comedy');
       break;
     case 'Documentary':
       nav[0].className = 'nav-link';
@@ -101,7 +99,6 @@ const navClick = (genre) => {
       nav[1].innerHTML = 'Comedy';
       nav[2].className = 'nav-link active';
       nav[2].innerHTML = `Documentary (${docShows.length})`;
-      console.log('doc');
       break;
     default:
       break;
