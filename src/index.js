@@ -30,12 +30,11 @@ const drama = [
 const documentary = [
   'tt15260794', //Turning Point: 9/11
   'tt5491994', // Planet Earth II
-  'tt0185906', // Band of Brothers
-  'tt7366338', // Chernobyl
-  'tt0773262', // Dexter
-  'tt10919420', // Squid Game
-  'tt0141842', // The Sopranos
-  'tt4574334', // Stranger Things
+  'tt15254840', // Nuclear Family
+  'tt15166116', // Countdown: Inspiration4 Mission to Space
+  'tt8420184', // The Last Dance
+  'tt11823076', //Tiger King: Murder, Mayhem and Madness
+  'tt14734548', // 9/11: One Day in America 
 ];
 
 loadShows(drama, main);
@@ -60,14 +59,6 @@ const modal = `
 `;
 
 main.insertAdjacentHTML('beforeend', modal);
-
-const destroyContent = () => {
-  const content = document.getElementById('listedShow');
-
-  while (content.firstChild) {
-    content.removeChild(content.firstChild);
-  }  
-}
 
 const listenerNav = (shows, navbar) => {
   console.log(shows);
