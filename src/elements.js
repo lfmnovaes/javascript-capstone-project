@@ -2,7 +2,7 @@ import { getShowById } from './getShow.js';
 import { listenLikes, like } from './handleLikes.js';
 import { loadComments } from './displayComments.js';
 
-const createCard = (obj, counter, like) => {
+const createCard = (obj, counter, like, api) => {
   const data = `
   <div class="col">
     <div class="card">
@@ -15,7 +15,7 @@ const createCard = (obj, counter, like) => {
             <span id="like-${counter}">${like} likes</span>
           </div>
         </div>
-        <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
+        <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter}, '${api}')">
           Comments
         </button>
       </div>
@@ -27,31 +27,31 @@ const createCard = (obj, counter, like) => {
 
 let showResults = [];
 
-const createAlbum = async (arr, main) => {
+const createAlbum = async (arr, main, api) => {
   const container = document.createElement('div');
   container.className = 'container';
   const div = document.createElement('div');
   div.className = 'row row-cols-1 row-cols-md-4 g-4';
   container.appendChild(div);
-  const likeList = await like(arr.length);
+  const likeList = await like(arr.length, api);
   let counter = 0;
   arr.forEach((e) => {
-    div.innerHTML += createCard(e, counter, likeList[counter]);
+    div.innerHTML += createCard(e, counter, likeList[counter], api);
     counter += 1;
   });
   main.append(container);
-  listenLikes(likeList);
+  listenLikes(likeList, api);
 };
 
-export const loadShows = async (type, main) => {
+export const loadShows = async (type, main, api) => {
   showResults = [];
   type.forEach((id) => {
     showResults.push(getShowById(id));
   });
-  return createAlbum(await Promise.all(showResults), main);
+  return createAlbum(await Promise.all(showResults), main, api);
 };
 
-window.populateModal = (id) => {
+window.populateModal = (id, api) => {
   const mainModal = document.getElementById('mainModal');
   showResults[id].then((show) => {
     mainModal.innerHTML = `
@@ -75,7 +75,7 @@ window.populateModal = (id) => {
         <div id="newComment" class="d-flex flex-column form-group">
           <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
           <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
-          <button id="btnComment" type="button" class="my-2 btn btn-primary" onclick="addNewComment(${id})">Comment</button>
+          <button id="btnComment" type="button" class="my-2 btn btn-primary" onclick="addNewComment(${id}, '${api}')">Comment</button>
         </div>
         </form>
         <div class="modal-footer">
