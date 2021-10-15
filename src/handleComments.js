@@ -3,6 +3,17 @@ const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/
 const get = '/comments?item_id=';
 const post = '/comments/';
 
+/*
+async function getComments(itemID) {
+  try {
+    const response = await fetch(api + get + itemID);
+    const comments = await response.json();
+    printComments(comments);
+  } catch {
+    // console.log('there is an error');
+  }
+}
+likes */
 const getComments = async (itemID) => {
   const response = await fetch(api + get + itemID);
   return response.json();

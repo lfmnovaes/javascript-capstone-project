@@ -35,4 +35,5 @@ const modal = `
   </div>
 </div>
 `;
+
 main[0].insertAdjacentHTML('beforeend', modal);
