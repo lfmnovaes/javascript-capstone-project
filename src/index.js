@@ -1,6 +1,7 @@
 import './style.css';
 import { loadShows } from './elements.js';
 import { loadAllComments } from './displayComments.js';
+import { navClick } from './itemCount.js';
 
 const main = document.getElementById('listedShow');
 
@@ -74,40 +75,9 @@ const modal = `
 main.insertAdjacentHTML('beforeend', modal);
 const nav = document.getElementById('nav').querySelectorAll('li');
 
-const navClick = (genre) => {
-  switch (genre) {
-    case 'Drama':
-      nav[0].className = 'nav-link active';
-      nav[0].innerHTML = `Drama (${dramaShows.length})`;
-      nav[1].className = 'nav-link';
-      nav[1].innerHTML = 'Comedy';
-      nav[2].className = 'nav-link';
-      nav[2].innerHTML = 'Documentary';
-      break;
-    case 'Comedy':
-      nav[0].className = 'nav-link';
-      nav[0].innerHTML = 'Drama';
-      nav[1].className = 'nav-link active';
-      nav[1].innerHTML = `Comedy (${comedyShows.length})`;
-      nav[2].className = 'nav-link';
-      nav[2].innerHTML = 'Documentary';
-      break;
-    case 'Documentary':
-      nav[0].className = 'nav-link';
-      nav[0].innerHTML = 'Drama';
-      nav[1].className = 'nav-link';
-      nav[1].innerHTML = 'Comedy';
-      nav[2].className = 'nav-link active';
-      nav[2].innerHTML = `Documentary (${docShows.length})`;
-      break;
-    default:
-      break;
-  }
-};
-
 const listenerNav = (shows, navbar) => {
   navbar.addEventListener('click', () => {
-    navClick(navbar.innerText.split(' ')[0]);
+    navClick(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
     main.innerHTML = '';
     loadShows(shows, main);
     main.insertAdjacentHTML('beforeend', modal);
