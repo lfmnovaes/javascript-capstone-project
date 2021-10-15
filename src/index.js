@@ -5,10 +5,6 @@ import { getCounter } from './countShow.js';
 
 const main = document.getElementById('listedShow');
 
-/* 'X5qPSIb9YIcPVQTRSYUg',
-  'qafeh2BKDxqFOjaoaHYS',
-  'BEBsNB6mN9Na1RehIUoz' */
-
 const apiKEY = [
   'e0wOwtZerSIAcOKZGB5J',
   'WRd0oDpoezSdlcLkESaV',
