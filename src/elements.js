@@ -35,7 +35,7 @@ const createAlbum = async (arr, main) => {
   const div = document.createElement('div');
   div.className = 'row row-cols-1 row-cols-md-4 g-4';
   container.appendChild(div);
-  const likeList = await like(showIDs.length);
+  const likeList = await like(arr.length);
   let counter = 0;
   arr.forEach((e) => {
     div.innerHTML += createCard(e, counter, likeList[counter]);
