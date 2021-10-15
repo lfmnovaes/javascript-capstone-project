@@ -8,7 +8,6 @@ const createCard = (obj, counter, like) => {
     <div class="card">
       <img src="${obj.image.medium}" class="card-img-top img-fluid" alt="Poster of ${obj.name}">
       <div class="card-body">
-
         <div class="d-flex flex-row justify-content-between align-items-center">
           <h5 class="card-title">${obj.name}</h5>
           <div id="btnLike-${counter}" class="pointer">          
@@ -23,7 +22,6 @@ const createCard = (obj, counter, like) => {
     </div>
   </div>
   `;
-
   return data;
 };
 
@@ -68,7 +66,7 @@ window.populateModal = (id) => {
           ${show.summary}
         </div>
         <div id="comments">
-          <h2>Comments</h2>
+          <h2 id="commentHeader">Comments </h2>
           <ul id="commentList" class="list-group-flush ps-0">
           </ul>
         </div>

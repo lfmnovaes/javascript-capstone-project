@@ -29,6 +29,12 @@ export const loadComments = (id) => {
       commentList.innerHTML += createLi(e.username, e.comment, e.creation_date);
     });
   }
+  setNumberComments(id);
+};
+
+const setNumberComments = (id) => {
+  const commentHeader = document.getElementById('commentHeader');
+  commentHeader.innerText = `Comments (${comments[id].length})`;
 };
 
 window.addNewComment = (id) => {
