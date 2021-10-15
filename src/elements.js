@@ -2,17 +2,6 @@ import { getShowById } from './getShow.js';
 import { listenLikes, like } from './handleLikes.js';
 import { loadComments } from './displayComments.js';
 
-const showIDs = [
-  'tt0903747', // Breaking Bad
-  'tt1475582', // Sherlock
-  'tt0185906', // Band of Brothers
-  'tt7366338', // Chernobyl
-  'tt0773262', // Dexter
-  'tt10919420', // Squid Game
-  'tt0141842', // The Sopranos
-  'tt4574334', // Stranger Things
-];
-
 const createCard = (obj, counter, like) => {
   const data = `
   <div class="col">
@@ -38,7 +27,7 @@ const createCard = (obj, counter, like) => {
   return data;
 };
 
-const showResults = [];
+let showResults = [];
 
 const createAlbum = async (arr, main) => {
   const container = document.createElement('div');
@@ -46,7 +35,7 @@ const createAlbum = async (arr, main) => {
   const div = document.createElement('div');
   div.className = 'row row-cols-1 row-cols-md-4 g-4';
   container.appendChild(div);
-  const likeList = await like(showIDs.length);
+  const likeList = await like(arr.length);
   let counter = 0;
   arr.forEach((e) => {
     div.innerHTML += createCard(e, counter, likeList[counter]);
@@ -56,8 +45,9 @@ const createAlbum = async (arr, main) => {
   listenLikes(likeList);
 };
 
-export const loadShows = async (main) => {
-  showIDs.forEach((id) => {
+export const loadShows = async (type, main) => {
+  showResults = [];
+  type.forEach((id) => {
     showResults.push(getShowById(id));
   });
   return createAlbum(await Promise.all(showResults), main);
