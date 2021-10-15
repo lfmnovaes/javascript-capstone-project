@@ -84,7 +84,7 @@ window.populateModal = (id) => {
     </div>
     `;
   });
-  loadComments(id);
+  setTimeout(() => { loadComments(id); }, 100);
 };
 
 export default loadShows;

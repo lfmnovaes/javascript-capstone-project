@@ -6,7 +6,6 @@ const main = document.getElementsByTagName('main');
 
 loadShows(main[0]);
 loadAllComments();
-
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -36,5 +35,4 @@ const modal = `
   </div>
 </div>
 `;
-
 main[0].insertAdjacentHTML('beforeend', modal);
