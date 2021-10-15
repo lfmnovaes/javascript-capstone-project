@@ -15,7 +15,7 @@ const createCard = (obj, counter, like, api) => {
             <span id="like-${counter}">${like} likes</span>
           </div>
         </div>
-        <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter}, ${api})">
+        <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter}, '${api}')">
           Comments
         </button>
       </div>
@@ -28,7 +28,6 @@ const createCard = (obj, counter, like, api) => {
 let showResults = [];
 
 const createAlbum = async (arr, main, api) => {
-  
   const container = document.createElement('div');
   container.className = 'container';
   const div = document.createElement('div');
@@ -76,7 +75,7 @@ window.populateModal = (id, api) => {
         <div id="newComment" class="d-flex flex-column form-group">
           <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
           <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
-          <button id="btnComment" type="button" class="my-2 btn btn-primary" onclick="addNewComment(${id}, ${api})">Comment</button>
+          <button id="btnComment" type="button" class="my-2 btn btn-primary" onclick="addNewComment(${id}, '${api}')">Comment</button>
         </div>
         </form>
         <div class="modal-footer">

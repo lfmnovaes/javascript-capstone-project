@@ -4,12 +4,15 @@ import { loadAllComments } from './displayComments.js';
 
 const main = document.getElementById('listedShow');
 
-
+/* 'X5qPSIb9YIcPVQTRSYUg',
+  'qafeh2BKDxqFOjaoaHYS',
+  'BEBsNB6mN9Na1RehIUoz' */
 
 const apiKEY = [
-  'X5qPSIb9YIcPVQTRSYUg',
-  'qafeh2BKDxqFOjaoaHYS'
-]
+  'e0wOwtZerSIAcOKZGB5J',
+  'WRd0oDpoezSdlcLkESaV',
+  'waroYTVKdnkh8l9aKV8p',
+];
 
 // COMEDY
 const comedyShows = [
@@ -44,7 +47,7 @@ const docShows = [
   'tt14734548', // 9/11: One Day in America
 ];
 
-loadAllComments(apiKEY[0]);
+loadAllComments(apiKEY[0], dramaShows.length);
 loadShows(dramaShows, main, apiKEY[0]);
 
 const modal = `
@@ -111,16 +114,16 @@ const navClick = (genre) => {
   }
 };
 
-const listenerNav = (shows, navbar, api) => {
+const listenerNav = (shows, navbar, api, size) => {
   navbar.addEventListener('click', () => {
     navClick(navbar.innerText.split(' ')[0]);
-    loadAllComments(api);
+    loadAllComments(api, size);
     main.innerHTML = '';
     loadShows(shows, main, api);
     main.insertAdjacentHTML('beforeend', modal);
   });
 };
 
-listenerNav(dramaShows, nav[0], apiKEY[0]);
-listenerNav(comedyShows, nav[1], apiKEY[1]);
-listenerNav(docShows, nav[2]);
+listenerNav(dramaShows, nav[0], apiKEY[0], dramaShows.length);
+listenerNav(comedyShows, nav[1], apiKEY[1], comedyShows.length);
+listenerNav(docShows, nav[2], apiKEY[2], docShows.length);

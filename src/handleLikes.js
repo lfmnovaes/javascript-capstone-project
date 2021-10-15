@@ -1,8 +1,7 @@
-// const id = 'qafeh2BKDxqFOjaoaHYS';
-const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`;
+const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
 
 async function setLikes(total, id) {
-  return fetch(api + id + '/likes/')
+  return fetch(`${api + id}/likes/`)
     .then((response) => response.json())
     .then((likes) => likes).catch(() => {
       const emptyArr = [];
@@ -14,8 +13,7 @@ async function setLikes(total, id) {
 }
 
 const newLike = (itemID, id) => {
-  console.log(api + id + '/likes/')
-  fetch(api + id + '/likes/', {
+  fetch(`${api + id}/likes/`, {
     method: 'POST',
     body: JSON.stringify({
       item_id: `item${itemID}`,

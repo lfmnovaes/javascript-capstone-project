@@ -2,11 +2,9 @@ import { getComments, addComment } from './handleComments.js';
 
 let comments = [];
 
-export const loadAllComments = async (api) => {
-
+export const loadAllComments = async (api, size) => {
   comments = [];
-
-  for (let i = 0; i < 8; i += 1) {
+  for (let i = 0; i < size; i += 1) {
     comments.push(getComments(`${i}`, api));
   }
   Promise.all(comments).then((result) => { comments = result; });
