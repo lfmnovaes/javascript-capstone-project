@@ -1,4 +1,5 @@
 import { getComments, addComment } from './handleComments.js';
+import { getCounter } from './countComments.js';
 
 let comments = [];
 
@@ -18,7 +19,7 @@ const createLi = (username, comment, date) => {
 
 const setNumberComments = (id) => {
   const commentHeader = document.getElementById('commentHeader');
-  commentHeader.innerText = `Comments (${comments[id].length})`;
+  commentHeader.innerText = `Comments (${getCounter(comments[id])})`;
 };
 
 export const loadComments = (id) => {

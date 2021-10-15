@@ -1,4 +1,4 @@
-export const navClick = (nav, genre, dramaShows, comedyShows, docShows) => {
+export const getCounter = (nav, genre, dramaShows, comedyShows, docShows) => {
   switch (genre) {
     case 'Drama':
       nav[0].className = 'nav-link active';
@@ -29,4 +29,4 @@ export const navClick = (nav, genre, dramaShows, comedyShows, docShows) => {
   }
 };
 
-export default navClick;
+export default getCounter;

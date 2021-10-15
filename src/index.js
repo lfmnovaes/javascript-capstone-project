@@ -1,13 +1,12 @@
 import './style.css';
 import { loadShows } from './elements.js';
 import { loadAllComments } from './displayComments.js';
-import { navClick } from './itemCount.js';
+import { getCounter } from './countShow.js';
 
 const main = document.getElementById('listedShow');
 
 loadAllComments();
 
-// COMEDY
 const comedyShows = [
   'tt0386676', // The Office
   'tt0108778', // Friends
@@ -17,7 +16,6 @@ const comedyShows = [
   'tt0096697', // The Simpsons
 ];
 
-// DRAMA
 const dramaShows = [
   'tt0903747', // Breaking Bad
   'tt1475582', // Sherlock
@@ -29,7 +27,6 @@ const dramaShows = [
   'tt4574334', // Stranger Things
 ];
 
-// DOCUMENTARY
 const docShows = [
   'tt15260794', // Turning Point: 9/11
   'tt5491994', // Planet Earth II
@@ -77,7 +74,7 @@ const nav = document.getElementById('nav').querySelectorAll('li');
 
 const listenerNav = (shows, navbar) => {
   navbar.addEventListener('click', () => {
-    navClick(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
+    getCounter(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
     main.innerHTML = '';
     loadShows(shows, main);
     main.insertAdjacentHTML('beforeend', modal);
