@@ -41,8 +41,8 @@ async function like(total) {
 }
 
 const listenLikes = (likedList) => {
-  let btnLike; let
-    likeText;
+  let btnLike;
+  let likeText;
   likedList.forEach((element, i) => {
     btnLike = document.getElementById(`btnLike-${i}`);
     btnLike.addEventListener('click', () => {

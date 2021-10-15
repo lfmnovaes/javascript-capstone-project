@@ -7,7 +7,7 @@ const main = document.getElementById('listedShow');
 loadAllComments();
 
 // COMEDY
-const comedy = [
+const comedyShows = [
   'tt0386676', // The Office
   'tt0108778', // Friends
   'tt0898266', // The Big Bang Theory
@@ -17,7 +17,7 @@ const comedy = [
 ];
 
 // DRAMA
-const drama = [
+const dramaShows = [
   'tt0903747', // Breaking Bad
   'tt1475582', // Sherlock
   'tt0185906', // Band of Brothers
@@ -29,7 +29,7 @@ const drama = [
 ];
 
 // DOCUMENTARY
-const documentary = [
+const docShows = [
   'tt15260794', // Turning Point: 9/11
   'tt5491994', // Planet Earth II
   'tt15254840', // Nuclear Family
@@ -39,12 +39,8 @@ const documentary = [
   'tt14734548', // 9/11: One Day in America
 ];
 
-loadShows(drama, main);
+loadShows(dramaShows, main);
 
-// const main = document.getElementsByTagName('main');
-
-// loadShows(main[0]);
-// loadAllComments();
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -76,16 +72,51 @@ const modal = `
 `;
 
 main.insertAdjacentHTML('beforeend', modal);
+const nav = document.getElementById('nav').querySelectorAll('li');
+
+const navClick = (genre) => {
+  switch (genre) {
+    case 'Drama':
+      nav[0].className = 'nav-link active';
+      nav[0].innerHTML = `Drama (${dramaShows.length})`;
+      nav[1].className = 'nav-link';
+      nav[1].innerHTML = 'Comedy';
+      nav[2].className = 'nav-link';
+      nav[2].innerHTML = 'Documentary';
+      console.log('drama');
+      break;
+    case 'Comedy':
+      nav[0].className = 'nav-link';
+      nav[0].innerHTML = 'Drama';
+      nav[1].className = 'nav-link active';
+      nav[1].innerHTML = `Comedy (${comedyShows.length})`;
+      nav[2].className = 'nav-link';
+      nav[2].innerHTML = 'Documentary';
+      console.log('comedy');
+      break;
+    case 'Documentary':
+      nav[0].className = 'nav-link';
+      nav[0].innerHTML = 'Drama';
+      nav[1].className = 'nav-link';
+      nav[1].innerHTML = 'Comedy';
+      nav[2].className = 'nav-link active';
+      nav[2].innerHTML = `Documentary (${docShows.length})`;
+      console.log('doc');
+      break;
+    default:
+      break;
+  }
+};
 
 const listenerNav = (shows, navbar) => {
   navbar.addEventListener('click', () => {
+    navClick(navbar.innerText.split(' ')[0]);
     main.innerHTML = '';
     loadShows(shows, main);
     main.insertAdjacentHTML('beforeend', modal);
   });
 };
 
-const nav = document.getElementById('nav').querySelectorAll('li');
-listenerNav(drama, nav[0]);
-listenerNav(comedy, nav[1]);
-listenerNav(documentary, nav[2]);
+listenerNav(dramaShows, nav[0]);
+listenerNav(comedyShows, nav[1]);
+listenerNav(docShows, nav[2]);
