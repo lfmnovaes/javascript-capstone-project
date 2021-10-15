@@ -1,3 +1,23 @@
-body {
-  background-color: bisque;
+.nav-link {
+  cursor: pointer;
+}
+
+i {
+  color: red;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+h3 {
+  padding: 0 16px;
+}
+
+form {
+  padding: 0 16px;
+}
+
+#btnComment {
+  margin: 0 auto;
 }
