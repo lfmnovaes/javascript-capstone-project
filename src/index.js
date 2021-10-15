@@ -28,13 +28,13 @@ const drama = [
 
 // DOCUMENTARY
 const documentary = [
-  'tt15260794', //Turning Point: 9/11
+  'tt15260794', // Turning Point: 9/11
   'tt5491994', // Planet Earth II
   'tt15254840', // Nuclear Family
   'tt15166116', // Countdown: Inspiration4 Mission to Space
   'tt8420184', // The Last Dance
-  'tt11823076', //Tiger King: Murder, Mayhem and Madness
-  'tt14734548', // 9/11: One Day in America 
+  'tt11823076', // Tiger King: Murder, Mayhem and Madness
+  'tt14734548', // 9/11: One Day in America
 ];
 
 loadShows(drama, main);
@@ -61,12 +61,11 @@ const modal = `
 main.insertAdjacentHTML('beforeend', modal);
 
 const listenerNav = (shows, navbar) => {
-  console.log(shows);
   navbar.addEventListener('click', () => {
     main.innerHTML = '';
-    loadShows(shows, main);       
-    main.insertAdjacentHTML('beforeend', modal); 
-  })
+    loadShows(shows, main);
+    main.insertAdjacentHTML('beforeend', modal);
+  });
 };
 
 const nav = document.getElementById('nav').querySelectorAll('li');
