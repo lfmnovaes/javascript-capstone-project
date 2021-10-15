@@ -1,6 +1,7 @@
 import './style.css';
 import { loadShows } from './elements.js';
 import { loadAllComments } from './displayComments.js';
+import { navClick } from './itemCount.js';
 
 const main = document.getElementById('listedShow');
 
@@ -83,6 +84,7 @@ const modal = `
 main.insertAdjacentHTML('beforeend', modal);
 const nav = document.getElementById('nav').querySelectorAll('li');
 
+/*
 const navClick = (genre) => {
   switch (genre) {
     case 'Drama':
@@ -117,8 +119,12 @@ const navClick = (genre) => {
 const listenerNav = (shows, navbar, api, size) => {
   navbar.addEventListener('click', () => {
     navClick(navbar.innerText.split(' ')[0]);
-    loadAllComments(api, size);
+*/
+const listenerNav = (shows, navbar, api, size) => {
+  navbar.addEventListener('click', () => {
+    navClick(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
     main.innerHTML = '';
+    loadAllComments(api, size);
     loadShows(shows, main, api);
     main.insertAdjacentHTML('beforeend', modal);
   });
