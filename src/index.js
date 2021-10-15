@@ -1,7 +1,5 @@
 import './style.css';
 import { loadShows } from './elements.js';
-import { loadAllComments } from './displayComments.js';
-
 
 const main = document.getElementById('listedShow');
 
@@ -40,10 +38,10 @@ const documentary = [
 
 loadShows(drama, main);
 
-//const main = document.getElementsByTagName('main');
+// const main = document.getElementsByTagName('main');
 
-//loadShows(main[0]);
-//loadAllComments();
+// loadShows(main[0]);
+// loadAllComments();
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
   <div class="modal-dialog">
