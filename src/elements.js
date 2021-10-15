@@ -2,6 +2,7 @@ import { getShowById } from './getShow.js';
 import { listenLikes, like } from './handleLikes.js';
 import { loadComments } from './displayComments.js';
 
+// DRAMA
 const showIDs = [
   'tt0903747', // Breaking Bad
   'tt1475582', // Sherlock
@@ -38,7 +39,7 @@ const createCard = (obj, counter, like) => {
   return data;
 };
 
-const showResults = [];
+let showResults = [];
 
 const createAlbum = async (arr, main) => {
   const container = document.createElement('div');
@@ -56,8 +57,9 @@ const createAlbum = async (arr, main) => {
   listenLikes(likeList);
 };
 
-export const loadShows = async (main) => {
-  showIDs.forEach((id) => {
+export const loadShows = async (type, main) => {
+  showResults = [];
+  type.forEach((id) => {
     showResults.push(getShowById(id));
   });
   return createAlbum(await Promise.all(showResults), main);
