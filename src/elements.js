@@ -1,5 +1,6 @@
 import { getShowById } from './getShow.js';
 import { listenLikes, like } from './handleLikes.js';
+import { loadComments } from './displayComments.js';
 
 const showIDs = [
   'tt0903747', // Breaking Bad
@@ -18,6 +19,7 @@ const createCard = (obj, counter, like) => {
     <div class="card">
       <img src="${obj.image.medium}" class="card-img-top img-fluid" alt="Poster of ${obj.name}">
       <div class="card-body">
+
         <div class="d-flex flex-row justify-content-between align-items-center">
           <h5 class="card-title">${obj.name}</h5>
           <div id="btnLike-${counter}" class="pointer">          
@@ -26,6 +28,10 @@ const createCard = (obj, counter, like) => {
           </div>
         </div>
         <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
+/* dev
+        <h5 class="card-title">${obj.name}</h5>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
+ */dev
           Comments
         </button>
       </div>
@@ -61,11 +67,11 @@ export const loadShows = async (main) => {
   return createAlbum(await Promise.all(showResults), main);
 };
 
-window.populateModal = (counter) => {
+window.populateModal = (id) => {
   const mainModal = document.getElementById('mainModal');
-  showResults[counter].then((show) => {
+  showResults[id].then((show) => {
     mainModal.innerHTML = `
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="mainModalLabel">${show.name}</h5>
@@ -75,6 +81,17 @@ window.populateModal = (counter) => {
           <img src="${show.image.medium}" class="mx-auto d-block">
           ${show.summary}
         </div>
+        <div id="comments">
+          <h2>Comments</h2>
+          <ul id="commentList" class="list-group-flush ps-0">
+          </ul>
+        </div>
+        <div id="newComment" class="d-flex flex-column">   
+          <h2>Add a comment</h2> 
+          <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
+          <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
+          <button id="btnComment" class="my-2 btn btn-secondary" onclick="addNewComment(${id})">Comment</button>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
@@ -82,6 +99,7 @@ window.populateModal = (counter) => {
     </div>
     `;
   });
+  setTimeout(() => { loadComments(id); }, 100);
 };
 
 export default loadShows;
