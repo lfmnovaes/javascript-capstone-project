@@ -28,10 +28,6 @@ const createCard = (obj, counter, like) => {
           </div>
         </div>
         <button id="btn${counter}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
-/* dev
-        <h5 class="card-title">${obj.name}</h5>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mainModal" onclick="populateModal(${counter})">
- */dev
           Comments
         </button>
       </div>
