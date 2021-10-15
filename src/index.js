@@ -4,7 +4,12 @@ import { loadAllComments } from './displayComments.js';
 
 const main = document.getElementById('listedShow');
 
-loadAllComments();
+
+
+const apiKEY = [
+  'X5qPSIb9YIcPVQTRSYUg',
+  'qafeh2BKDxqFOjaoaHYS'
+]
 
 // COMEDY
 const comedyShows = [
@@ -39,7 +44,8 @@ const docShows = [
   'tt14734548', // 9/11: One Day in America
 ];
 
-loadShows(dramaShows, main);
+loadAllComments(apiKEY[0]);
+loadShows(dramaShows, main, apiKEY[0]);
 
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
@@ -105,15 +111,16 @@ const navClick = (genre) => {
   }
 };
 
-const listenerNav = (shows, navbar) => {
+const listenerNav = (shows, navbar, api) => {
   navbar.addEventListener('click', () => {
     navClick(navbar.innerText.split(' ')[0]);
+    loadAllComments(api);
     main.innerHTML = '';
-    loadShows(shows, main);
+    loadShows(shows, main, api);
     main.insertAdjacentHTML('beforeend', modal);
   });
 };
 
-listenerNav(dramaShows, nav[0]);
-listenerNav(comedyShows, nav[1]);
+listenerNav(dramaShows, nav[0], apiKEY[0]);
+listenerNav(comedyShows, nav[1], apiKEY[1]);
 listenerNav(docShows, nav[2]);

@@ -2,9 +2,12 @@ import { getComments, addComment } from './handleComments.js';
 
 let comments = [];
 
-export const loadAllComments = async () => {
+export const loadAllComments = async (api) => {
+
+  comments = [];
+
   for (let i = 0; i < 8; i += 1) {
-    comments.push(getComments(`${i}`));
+    comments.push(getComments(`${i}`, api));
   }
   Promise.all(comments).then((result) => { comments = result; });
 };
@@ -37,14 +40,14 @@ export const loadComments = (id) => {
   setNumberComments(id);
 };
 
-window.addNewComment = (id) => {
+window.addNewComment = (id, api) => {
   const commentList = document.getElementById('commentList');
   const nameField = document.getElementById('username');
   const commentField = document.getElementById('comment');
   const today = new Date();
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   commentList.innerHTML += createLi(nameField.value, commentField.value, date);
-  addComment(id, nameField.value, commentField.value);
+  addComment(id, nameField.value, commentField.value, api);
   comments[id].push({
     username: nameField.value,
     comment: commentField.value,

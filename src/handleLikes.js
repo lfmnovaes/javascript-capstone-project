@@ -1,8 +1,8 @@
-const id = 'qafeh2BKDxqFOjaoaHYS';
-const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${id}/likes/`;
+// const id = 'qafeh2BKDxqFOjaoaHYS';
+const api = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`;
 
-async function setLikes(total) {
-  return fetch(api)
+async function setLikes(total, id) {
+  return fetch(api + id + '/likes/')
     .then((response) => response.json())
     .then((likes) => likes).catch(() => {
       const emptyArr = [];
@@ -13,8 +13,9 @@ async function setLikes(total) {
     });
 }
 
-const newLike = (itemID) => {
-  fetch(api, {
+const newLike = (itemID, id) => {
+  console.log(api + id + '/likes/')
+  fetch(api + id + '/likes/', {
     method: 'POST',
     body: JSON.stringify({
       item_id: `item${itemID}`,
@@ -25,8 +26,8 @@ const newLike = (itemID) => {
   }).then((response) => response.text());
 };
 
-async function like(total) {
-  const likeList = await setLikes();
+async function like(total, api) {
+  const likeList = await setLikes(total, api);
   const fullLikeList = [];
   let index = -1;
   for (let i = 0; i < total; i += 1) {
@@ -40,13 +41,13 @@ async function like(total) {
   return fullLikeList;
 }
 
-const listenLikes = (likedList) => {
+const listenLikes = (likedList, api) => {
   let btnLike;
   let likeText;
   likedList.forEach((element, i) => {
     btnLike = document.getElementById(`btnLike-${i}`);
     btnLike.addEventListener('click', () => {
-      newLike(i);
+      newLike(i, api);
       likeText = document.getElementById(`like-${i}`);
       likeText.removeChild(likeText.firstChild);
       likeText.appendChild(document.createTextNode(`${likedList[i] + 1} likes`));
