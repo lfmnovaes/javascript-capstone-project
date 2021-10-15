@@ -1,13 +1,17 @@
 import './style.css';
 import { loadShows } from './elements.js';
 import { loadAllComments } from './displayComments.js';
+import { getCounter } from './countShow.js';
 
 const main = document.getElementById('listedShow');
 
-loadAllComments();
+const apiKEY = [
+  'e0wOwtZerSIAcOKZGB5J',
+  'WRd0oDpoezSdlcLkESaV',
+  'waroYTVKdnkh8l9aKV8p',
+];
 
-// COMEDY
-const comedy = [
+const comedyShows = [
   'tt0386676', // The Office
   'tt0108778', // Friends
   'tt0898266', // The Big Bang Theory
@@ -16,8 +20,7 @@ const comedy = [
   'tt0096697', // The Simpsons
 ];
 
-// DRAMA
-const drama = [
+const dramaShows = [
   'tt0903747', // Breaking Bad
   'tt1475582', // Sherlock
   'tt0185906', // Band of Brothers
@@ -28,8 +31,7 @@ const drama = [
   'tt4574334', // Stranger Things
 ];
 
-// DOCUMENTARY
-const documentary = [
+const docShows = [
   'tt15260794', // Turning Point: 9/11
   'tt5491994', // Planet Earth II
   'tt15254840', // Nuclear Family
@@ -39,12 +41,9 @@ const documentary = [
   'tt14734548', // 9/11: One Day in America
 ];
 
-loadShows(drama, main);
+loadAllComments(apiKEY[0], dramaShows.length);
+loadShows(dramaShows, main, apiKEY[0]);
 
-// const main = document.getElementsByTagName('main');
-
-// loadShows(main[0]);
-// loadAllComments();
 const modal = `
 <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -76,16 +75,18 @@ const modal = `
 `;
 
 main.insertAdjacentHTML('beforeend', modal);
+const nav = document.getElementById('nav').querySelectorAll('li');
 
-const listenerNav = (shows, navbar) => {
+const listenerNav = (shows, navbar, api, size) => {
   navbar.addEventListener('click', () => {
+    getCounter(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
     main.innerHTML = '';
-    loadShows(shows, main);
+    loadAllComments(api, size);
+    loadShows(shows, main, api);
     main.insertAdjacentHTML('beforeend', modal);
   });
 };
 
-const nav = document.getElementById('nav').querySelectorAll('li');
-listenerNav(drama, nav[0]);
-listenerNav(comedy, nav[1]);
-listenerNav(documentary, nav[2]);
+listenerNav(dramaShows, nav[0], apiKEY[0], dramaShows.length);
+listenerNav(comedyShows, nav[1], apiKEY[1], comedyShows.length);
+listenerNav(docShows, nav[2], apiKEY[2], docShows.length);

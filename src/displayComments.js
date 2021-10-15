@@ -1,10 +1,12 @@
 import { getComments, addComment } from './handleComments.js';
+import { getCounter } from './countComments.js';
 
 let comments = [];
 
-export const loadAllComments = async () => {
-  for (let i = 0; i < 8; i += 1) {
-    comments.push(getComments(`${i}`));
+export const loadAllComments = async (api, size) => {
+  comments = [];
+  for (let i = 0; i < size; i += 1) {
+    comments.push(getComments(`${i}`, api));
   }
   Promise.all(comments).then((result) => { comments = result; });
 };
@@ -14,6 +16,11 @@ const createLi = (username, comment, date) => {
   <li class="list-group-item">${date}<strong> ${username} says: </strong>${comment}</li>
   `;
   return li;
+};
+
+const setNumberComments = (id) => {
+  const commentHeader = document.getElementById('commentHeader');
+  commentHeader.innerText = `Comments (${getCounter(comments[id])})`;
 };
 
 export const loadComments = (id) => {
@@ -29,16 +36,17 @@ export const loadComments = (id) => {
       commentList.innerHTML += createLi(e.username, e.comment, e.creation_date);
     });
   }
+  setNumberComments(id);
 };
 
-window.addNewComment = (id) => {
+window.addNewComment = (id, api) => {
   const commentList = document.getElementById('commentList');
   const nameField = document.getElementById('username');
   const commentField = document.getElementById('comment');
   const today = new Date();
   const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   commentList.innerHTML += createLi(nameField.value, commentField.value, date);
-  addComment(id, nameField.value, commentField.value);
+  addComment(id, nameField.value, commentField.value, api);
   comments[id].push({
     username: nameField.value,
     comment: commentField.value,
