@@ -55,7 +55,7 @@ window.populateModal = (id) => {
   const mainModal = document.getElementById('mainModal');
   showResults[id].then((show) => {
     mainModal.innerHTML = `
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="mainModalLabel">${show.name}</h5>
@@ -66,16 +66,18 @@ window.populateModal = (id) => {
           ${show.summary}
         </div>
         <div id="comments">
-          <h2 id="commentHeader">Comments </h2>
+          <h3 id="commentHeader">Comments </h2>
           <ul id="commentList" class="list-group-flush ps-0">
           </ul>
         </div>
-        <div id="newComment" class="d-flex flex-column">   
-          <h2>Add a comment</h2> 
+        <h3>Add a new comment</h2>
+        <form>
+        <div id="newComment" class="d-flex flex-column form-group">
           <input id="username" type="text" class="my-2 form-control" placeholder="Your name">
           <textarea id="comment" class="my-2 form-control" placeholder="Your insights" rows="3"></textarea>
-          <button id="btnComment" class="my-2 btn btn-secondary" onclick="addNewComment(${id})">Comment</button>
+          <button id="btnComment" type="button" class="my-2 btn btn-primary" onclick="addNewComment(${id})">Comment</button>
         </div>
+        </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
