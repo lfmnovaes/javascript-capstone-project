@@ -2,18 +2,6 @@ import { getShowById } from './getShow.js';
 import { listenLikes, like } from './handleLikes.js';
 import { loadComments } from './displayComments.js';
 
-// DRAMA
-const showIDs = [
-  'tt0903747', // Breaking Bad
-  'tt1475582', // Sherlock
-  'tt0185906', // Band of Brothers
-  'tt7366338', // Chernobyl
-  'tt0773262', // Dexter
-  'tt10919420', // Squid Game
-  'tt0141842', // The Sopranos
-  'tt4574334', // Stranger Things
-];
-
 const createCard = (obj, counter, like) => {
   const data = `
   <div class="col">

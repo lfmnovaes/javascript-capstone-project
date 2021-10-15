@@ -1,7 +1,10 @@
 import './style.css';
 import { loadShows } from './elements.js';
+import { loadAllComments } from './displayComments.js';
 
 const main = document.getElementById('listedShow');
+
+loadAllComments();
 
 // COMEDY
 const comedy = [
