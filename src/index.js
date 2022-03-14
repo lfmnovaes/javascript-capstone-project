@@ -84,7 +84,7 @@ const listenerNav = (shows, navbar, api, size) => {
       navbar.innerText.split(' ')[0],
       dramaShows,
       comedyShows,
-      docShows
+      docShows,
     );
     main.innerHTML = '';
     loadAllComments(api, size);

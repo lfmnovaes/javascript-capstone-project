@@ -33,7 +33,7 @@ export const loadComments = (id) => {
         commentList.innerHTML += createLi(
           e.username,
           e.comment,
-          e.creation_date
+          e.creation_date,
         );
       });
     });

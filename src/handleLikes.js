@@ -1,5 +1,4 @@
-const api =
-  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
+const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
 
 async function setLikes(total, id) {
   return fetch(`${api + id}/likes/`)
@@ -43,13 +42,13 @@ async function like(total, api) {
 
 const listenLikes = (likedList, api) => {
   likedList.forEach((_, i) => {
-    let btnLike = document.getElementById(`btnLike-${i}`);
+    const btnLike = document.getElementById(`btnLike-${i}`);
     btnLike.addEventListener('click', () => {
       newLike(i, api);
-      let likeText = document.getElementById(`like-${i}`);
+      const likeText = document.getElementById(`like-${i}`);
       likeText.removeChild(likeText.firstChild);
       likeText.appendChild(
-        document.createTextNode(`${likedList[i] + 1} likes`)
+        document.createTextNode(`${likedList[i] + 1} likes`),
       );
     });
   });
