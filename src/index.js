@@ -79,7 +79,13 @@ const nav = document.getElementById('nav').querySelectorAll('li');
 
 const listenerNav = (shows, navbar, api, size) => {
   navbar.addEventListener('click', () => {
-    getCounter(nav, navbar.innerText.split(' ')[0], dramaShows, comedyShows, docShows);
+    getCounter(
+      nav,
+      navbar.innerText.split(' ')[0],
+      dramaShows,
+      comedyShows,
+      docShows
+    );
     main.innerHTML = '';
     loadAllComments(api, size);
     loadShows(shows, main, api);

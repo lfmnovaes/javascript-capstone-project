@@ -8,7 +8,9 @@ export const loadAllComments = async (api, size) => {
   for (let i = 0; i < size; i += 1) {
     comments.push(getComments(`${i}`, api));
   }
-  Promise.all(comments).then((result) => { comments = result; });
+  Promise.all(comments).then((result) => {
+    comments = result;
+  });
 };
 
 const createLi = (username, comment, date) => {
@@ -28,7 +30,11 @@ export const loadComments = (id) => {
   if (Promise.resolve(comments[id]) === comments[id]) {
     comments[id].then((result) => {
       result.forEach((e) => {
-        commentList.innerHTML += createLi(e.username, e.comment, e.creation_date);
+        commentList.innerHTML += createLi(
+          e.username,
+          e.comment,
+          e.creation_date
+        );
       });
     });
   } else {
@@ -44,7 +50,9 @@ window.addNewComment = (id, api) => {
   const nameField = document.getElementById('username');
   const commentField = document.getElementById('comment');
   const today = new Date();
-  const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  const date = `${today.getFullYear()}-${
+    today.getMonth() + 1
+  }-${today.getDate()}`;
   commentList.innerHTML += createLi(nameField.value, commentField.value, date);
   addComment(id, nameField.value, commentField.value, api);
   comments[id].push({

@@ -1,26 +1,25 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Flfmnovaes%2Fjavascript-capstone-project&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-# JavaScript Capstone project
+# Popular TV Shows (JavaScript Capstone Project)
 
-> This website project shows some popular TV Shows with descriptions and a form for username and comments.
-
-## Preview
-
-![image](./preview.jpg)
-
-## Built With
-
-- HTML & CSS
-- Bootstrap
-- Javascript
-- Webpack
-- Jest
-- [TVmaze API](https://www.tvmaze.com/api)
-- Microverse's Involvement API
+> This project fetches data from [TVmaze API](https://www.tvmaze.com/api) of some popular TV Shows and connects to an Involvement API to register comments and likes.
 
 ## Live Demo
 
 [Live Demo Link](https://lfmnovaes.github.io/javascript-capstone-project/)
+
+## Preview
+
+![image](./preview.gif)
+
+## Built With
+
+* [NodeJS](https://nodejs.org/en/)
+* [Bootstrap](https://getbootstrap.com/)
+* [Webpack](https://webpack.js.org/)
+* [JestJS](https://jestjs.io/)
+* [TVmaze API](https://www.tvmaze.com/api)
+* Microverse's Involvement API
 
 ## Getting Started
 
@@ -34,10 +33,6 @@
 ### Prerequisites
 
 An updated web browser (preferably Chrome/Firefox/Opera/Edge)
-
-### Usage
-
-- Work in progress.
 
 ## Authors
 

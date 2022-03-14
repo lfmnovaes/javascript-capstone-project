@@ -1,4 +1,5 @@
-const api = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
+const api =
+  'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
 const get = '/comments?item_id=';
 const post = '/comments/';
 
